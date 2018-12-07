@@ -11,7 +11,9 @@ def fun_changefiles(g):
 
     ###################################################
     # 1: read from temp file for check Duplicate path and log it
-    f3 = open(path3 , 'r+')
+    f3 = open(path3 , 'a') #"a" - Append - will create a file if the specified file does not exist
+    f3.close()
+    f3 = open(path3 , 'r')
     lines3 = f3.readlines()
     f3.close()
 
@@ -110,20 +112,20 @@ def fun_changefiles(g):
 i=['a', 'b' ,'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'p' 'q' 'r' 's' 't' 'u' 'v' 'w' 'x' 'y' 'z'];
 import openpyxl
 ###
-input_excel_path = input('pls input src excel path(for EXP: /home/mohammad/Desktop/salam.xlsx): ');
+input_excel_path = input('pls enter src excel path(for EXP: /home/mohammad/Desktop/salam.xlsx): ');
 if os.path.exists(input_excel_path) == False :
     print ('\n');
-    print('Error: This  path is not exist' );
+    print('Error: This  enter is not exist' );
     exit()
 workbook = openpyxl.load_workbook(input_excel_path)
 sheet= input('pls enter sheet name (important it is case sensitive for EXP:Sheet1 ) : ')
 worksheet = workbook.get_sheet_by_name(sheet)
 
-input_excel_src_column = input('pls input src column  (for EXP : a ) : ');
-input_excel_log_column = input('pls input log column (for EXP : a ) : ');
-info = '\n'+'information'+'\n'+'input_excel_path :' + input_excel_path+'\n'+'sheet name :' + sheet+'\n'+'src column: '+input_excel_src_column+'\n'+'log column: '+input_excel_log_column;
+input_excel_src_column = input('pls enter src column  (for EXP : a ) : ');
+input_excel_log_column = input('pls enter log column (for EXP : a ) : ');
+info = '\n'+'Information ::: '+'\n'+'input_excel_path :' + input_excel_path+'\n'+'sheet name :' + sheet+'\n'+'src column: '+input_excel_src_column+'\n'+'log column: '+input_excel_log_column;
 OK = input(info+"\nif you confirm this info pls click Enter")
-addr_cell_log = input_excel_src_column + str(1);
+addr_cell_log = input_excel_log_column + str(1);
 #val_cell_log = worksheet[input_excel_log_column].value;
 worksheet[addr_cell_log] = 'log';
 workbook.save("trial.xls")
