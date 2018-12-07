@@ -32,6 +32,8 @@ def fun_changefiles(g):
         log = open('/home/mohammad/Desktop/log.txt',"a")
         log.write('Error: This  path is not exist -->' )
         log.write(o)
+        log.write(', cell_add:')
+        log.write(addr_cell_read)
         log.write('\n')
         return 1;
 
@@ -53,12 +55,14 @@ def fun_changefiles(g):
         log = open('/home/mohammad/Desktop/log.txt',"a")
         log.write('Error: This  path has already been entered -->' )
         log.write(o)
+        log.write(', cell_add:')
+        log.write(addr_cell_read)
         log.write('\n')
         return 1;
 
 
-            ####################################################################
-            # change for menu.php
+    ####################################################################
+    # change for menu.php
 
 
     f1 = open(path1)
@@ -71,8 +75,8 @@ def fun_changefiles(g):
             f1.write(line1)
     f1.close()
 
-                    ############################################################
-                    # change for radio_info.php
+    ##################################################################
+    # change for radio_info.php
     f2 = open(path2)
     lines2 = f2.readlines()
     f2.close()
@@ -83,14 +87,16 @@ def fun_changefiles(g):
             f2.write(line2)
     f2.close()
 
-                            ####################################################
-                            #o=g;
+    #################################################################
+    #o=g;
     worksheet[addr_cell_write] = 'successfully: ' + val_cell_read;
     workbook.save("trial.xls")
 
     log = open('/home/mohammad/Desktop/log.txt',"a")
     log.write(o)
     log.write(' :changing is created successfully')
+    log.write(', cell_add:')
+    log.write(addr_cell_read)
     #log.write(' with content: ')
     log.write('\n')
     print ('\n');
@@ -103,8 +109,27 @@ def fun_changefiles(g):
 
 i=['a', 'b' ,'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'p' 'q' 'r' 's' 't' 'u' 'v' 'w' 'x' 'y' 'z'];
 import openpyxl
-workbook = openpyxl.load_workbook('salam.xlsx')
-worksheet = workbook.get_sheet_by_name('Sheet1')
+###
+input_excel_path = input('pls input src excel path(for EXP: /home/mohammad/Desktop/salam.xlsx): ');
+if os.path.exists(input_excel_path) == False :
+    print ('\n');
+    print('Error: This  path is not exist' );
+    exit()
+workbook = openpyxl.load_workbook(input_excel_path)
+sheet= input('pls enter sheet name (important it is case sensitive for EXP:Sheet1 ) : ')
+worksheet = workbook.get_sheet_by_name(sheet)
+
+input_excel_src_column = input('pls input src column  (for EXP : a ) : ');
+input_excel_log_column = input('pls input log column (for EXP : a ) : ');
+info = '\n'+'information'+'\n'+'input_excel_path :' + input_excel_path+'\n'+'sheet name :' + sheet+'\n'+'src column: '+input_excel_src_column+'\n'+'log column: '+input_excel_log_column;
+OK = input(info+"\nif you confirm this info pls click Enter")
+addr_cell_log = input_excel_src_column + str(1);
+#val_cell_log = worksheet[input_excel_log_column].value;
+worksheet[addr_cell_log] = 'log';
+workbook.save("trial.xls")
+####
+
+
 
 columns=worksheet.columns
 rows=worksheet.rows
@@ -114,11 +139,13 @@ len_columns=len(columns)
 
 
 
-for num in range (len_rows):
+for num in range (len_rows - 1):
     #addr_cell = i[num]+str(2);
-    addr_cell_read = 'a'+str(num+1);
-    addr_cell_write = 'c'+str(num+1);
+    addr_cell_read = input_excel_src_column + str(num+2);
+    addr_cell_write = input_excel_log_column + str(num+2);
     val_cell_read = worksheet[addr_cell_read].value;
+    val_cell_read = str(val_cell_read)
+    #val_cell_read = val_cell_read[:-3]
     fun_changefiles(val_cell_read)
     print('info -->' , 'ip:' ,val_cell_read , ', cell_add:' , addr_cell_read );
     #worksheet[addr_cell_write] = val_cell_read;
@@ -126,3 +153,4 @@ for num in range (len_rows):
 print ('\n');
 print ('\n');
 print ('((( ___thank you for choice this program__)))');
+#print (val_cell_read);
