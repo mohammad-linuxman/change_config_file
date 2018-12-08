@@ -11,17 +11,17 @@ def fun_changefiles(g):
 
     ###################################################
     # 1: read from temp file for check Duplicate path and log it
-    f3 = open(path3 , 'a') #"a" - Append - will create a file if the specified file does not exist
-    f3.close()
-    f3 = open(path3 , 'r')
-    lines3 = f3.readlines()
-    f3.close()
+    #f3 = open(path3 , 'a') #"a" - Append - will create a file if the specified file does not exist
+    #f3.close()
+    #f3 = open(path3 , 'r')
+    #lines3 = f3.readlines()
+    #f3.close()
 
-    f3 = open(path3,"r")
-    for line3 in lines3:
-        i.append(line3[:-1])
+    #f3 = open(path3,"r")
+    #for line3 in lines3:
+    #    i.append(line3[:-1])
 
-        f3.close()
+    #    f3.close()
         #print(i);
 
     if os.path.exists(path1) == False or os.path.exists(path2) == False :
@@ -66,28 +66,35 @@ def fun_changefiles(g):
     ####################################################################
     # change for menu.php
 
-
-    f1 = open(path1)
-    lines1 = f1.readlines()
-    f1.close()
-
+    with open("/home/mohammad/Desktop/project/192.168.1.1/menu.php" , 'r') as infile:
+        readline=[]
+        for line in infile:
+            readline.append(line)
+        #f1 = open(path1)
+        #lines1 = f1.readlines()
+        #f1.close()
+    ali=0;
     f1 = open(path1,"w")
-    for line1 in lines1:
-        if line1 not in (lines1[int(0)] , lines1[int(1)] ) :
+    for line1 in readline:
+        ali=ali+1;
+        print(ali);
+        p=readline[2114];
+        q=readline[2115];
+        if line1 not in (p , q ) :
             f1.write(line1)
     f1.close()
 
     ##################################################################
     # change for radio_info.php
-    f2 = open(path2)
-    lines2 = f2.readlines()
-    f2.close()
+    #f2 = open(path2)
+    #lines2 = f2.readlines()
+    #f2.close()
 
-    f2 = open(path2,"w")
-    for line2 in lines2:
-        if line2 not in (lines2[int(0)] , lines2[int(1)] ) :
-            f2.write(line2)
-    f2.close()
+    #f2 = open(path2,"w")
+    #for line2 in lines2:
+    #    if line2 not in (lines2[int(0)] , lines2[int(1)] ) :
+    #        f2.write(line2)
+    #f2.close()
 
     #################################################################
     #o=g;
@@ -104,7 +111,7 @@ def fun_changefiles(g):
     print ('\n');
     print('successfully completed');
 
-    return 1;
+    #return 1;
 ########################
 ########################
 ########################
