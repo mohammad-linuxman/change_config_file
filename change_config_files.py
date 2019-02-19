@@ -10,19 +10,6 @@ def fun_changefiles(g):
     path3 = '/home/mohammad/Desktop/temp.txt';
 
     ###################################################
-    # 1: read from temp file for check Duplicate path and log it
-    #f3 = open(path3 , 'a') #"a" - Append - will create a file if the specified file does not exist
-    #f3.close()
-    #f3 = open(path3 , 'r')
-    #lines3 = f3.readlines()
-    #f3.close()
-
-    #f3 = open(path3,"r")
-    #for line3 in lines3:
-    #    i.append(line3[:-1])
-
-    #    f3.close()
-        #print(i);
 
     if os.path.exists(path1) == False or os.path.exists(path2) == False :
         print ('\n');
@@ -73,11 +60,11 @@ def fun_changefiles(g):
         #f1 = open(path1)
         #lines1 = f1.readlines()
         #f1.close()
-    ali=0;
+    count1=0;
     f1 = open(path1,"w")
     for line1 in readline:
-        ali=ali+1;
-        print(ali);
+        count1=count1+1;
+        print(count1);
         p=readline[2114];
         q=readline[2115];
         if line1 not in (p , q ) :
@@ -85,18 +72,7 @@ def fun_changefiles(g):
     f1.close()
 
     ##################################################################
-    # change for radio_info.php
-    #f2 = open(path2)
-    #lines2 = f2.readlines()
-    #f2.close()
-
-    #f2 = open(path2,"w")
-    #for line2 in lines2:
-    #    if line2 not in (lines2[int(0)] , lines2[int(1)] ) :
-    #        f2.write(line2)
-    #f2.close()
-
-    #################################################################
+    
     #o=g;
     worksheet[addr_cell_write] = 'successfully: ' + val_cell_read;
     workbook.save("trial.xls")
